@@ -8,7 +8,8 @@ function PropertiesFormSidebar() {
 
   if (!selectedElement) return null;
 
-  const PropertiesForm = FormElements[selectedElement?.type].formComponent;
+  const PropertiesForm =
+    FormElements[selectedElement?.type].propertiesComponent;
 
   return (
     <div className="flex flex-col p-2">
@@ -24,7 +25,7 @@ function PropertiesFormSidebar() {
           <AiOutlineClose />
         </Button>
       </div>
-      <PropertiesForm />
+      <PropertiesForm elementInstance={selectedElement} />
     </div>
   );
 }
