@@ -1,5 +1,5 @@
 import React from "react";
-import { FormElements } from "./FromElements";
+import { FormElements } from "./FormElements";
 import SidebarBtnElement from "./SidebarBtnElement";
 
 function DesignerSidebar() {
