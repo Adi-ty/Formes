@@ -3,7 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { LuHeading1, LuSeparatorHorizontal } from "react-icons/lu";
+import { LuSeparatorHorizontal } from "react-icons/lu";
 import { z } from "zod";
 import {
   ElementsType,
@@ -19,7 +19,6 @@ import {
   FormLabel,
   FormMessage,
 } from "../ui/form";
-import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { Slider } from "../ui/slider";
 
