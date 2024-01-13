@@ -8,23 +8,23 @@ import {
   useSensors,
 } from "@dnd-kit/core";
 import { Form } from "@prisma/client";
+import Link from "next/link";
 import { useEffect, useState } from "react";
+import Confetti from "react-confetti";
+import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
+import { ImSpinner2 } from "react-icons/im";
 import Designer from "./Designer";
 import DragOverlayWrapper from "./DragOverlayWrapper";
 import PreviewDialogBtn from "./PreviewDialogBtn";
 import PublishFormBtn from "./PublishFormBtn";
 import SaveFormBtn from "./SaveFormBtn";
 import useDesigner from "./hooks/useDesigner";
-import { ImSpinner2 } from "react-icons/im";
-import { Input } from "./ui/input";
 import { Button } from "./ui/button";
+import { Input } from "./ui/input";
 import { toast } from "./ui/use-toast";
-import Link from "next/link";
-import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
-import Confetti from "react-confetti";
 
 function FormBuilder({ form }: { form: Form }) {
-  const { setElements } = useDesigner();
+  const { setElements, setSelectedElement } = useDesigner();
   const [isReady, setIsReady] = useState(false);
 
   const mouseSensor = useSensor(MouseSensor, {
@@ -46,8 +46,9 @@ function FormBuilder({ form }: { form: Form }) {
     if (isReady) return;
     const elements = JSON.parse(form.content);
     setElements(elements);
+    setSelectedElement(null);
     setIsReady(true);
-  }, [form, setElements, isReady]);
+  }, [form, setElements, isReady, setSelectedElement]);
 
   if (!isReady) {
     return (

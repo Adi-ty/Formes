@@ -1,12 +1,8 @@
 import { GetFormById, GetFormWithSubmissions } from "@/actions/form";
+import { ElementsType, FormElementInstance } from "@/components/FormElements";
 import FormLinkShare from "@/components/FormLinkShare";
 import VisitBtn from "@/components/VisitBtn";
-import { FaWpforms } from "react-icons/fa";
-import { HiCursorClick } from "react-icons/hi";
-import { LuView } from "react-icons/lu";
-import { TbArrowBounce } from "react-icons/tb";
-import { StatsCard } from "../../page";
-import { ElementsType, FormElementInstance } from "@/components/FormElements";
+import { Badge } from "@/components/ui/badge";
 import {
   Table,
   TableBody,
@@ -15,8 +11,13 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { formatDistance } from "date-fns";
+import { format, formatDistance } from "date-fns";
 import { ReactNode } from "react";
+import { FaWpforms } from "react-icons/fa";
+import { HiCursorClick } from "react-icons/hi";
+import { LuView } from "react-icons/lu";
+import { TbArrowBounce } from "react-icons/tb";
+import { StatsCard } from "../../page";
 
 async function FormDetailPage({
   params,
@@ -118,6 +119,9 @@ async function SubmissionsTable({ id }: { id: number }) {
   formElements.forEach((element) => {
     switch (element.type) {
       case "TextField":
+      case "NumberField":
+      case "TextAreaField":
+      case "DateField":
         columns.push({
           id: element.id,
           label: element.extraAttributes?.label,
@@ -182,5 +186,14 @@ async function SubmissionsTable({ id }: { id: number }) {
 
 function RowCell({ type, value }: { type: ElementsType; value: string }) {
   let node: ReactNode = value;
+
+  switch (type) {
+    case "DateField":
+      if (!value) break;
+      const date = new Date(value);
+      node = <Badge variant={"outline"}>{format(date, "dd/MM/yyyy")}</Badge>;
+      break;
+  }
+
   return <TableCell>{node}</TableCell>;
 }
