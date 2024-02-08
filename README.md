@@ -5,7 +5,7 @@ This project is a web application built with Next.js that enables users to creat
 ## Getting Started
 1. **Clone the Repository:**
    ```bash
-   git clone https://github.com/your-username/Formes.git
+   git clone https://github.com/Adi-ty/Formes.git
    cd Formes
    ```
 2. **Install Dependencies:**
