@@ -121,6 +121,7 @@ async function SubmissionsTable({ id }: { id: number }) {
       case "TextField":
       case "NumberField":
       case "TextAreaField":
+      case "SelectField":
       case "DateField":
         columns.push({
           id: element.id,
